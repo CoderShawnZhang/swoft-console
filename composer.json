@@ -1,0 +1,18 @@
+{
+    "name": "swoftRewrite/swoft-console",
+    "authors": [
+        {
+            "name": "zhanghongbo",
+            "email": "taobao1875@163.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "SwoftRewrite\\Console\\":"src/"
+        },
+        "files":[
+            "src/Helper/Functions.php"
+        ]
+    }
+}
