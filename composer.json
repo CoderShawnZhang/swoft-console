@@ -1,5 +1,5 @@
 {
-    "name": "swoftRewrite/swoft-console",
+    "name": "swoft-rewrite/swoft-console",
     "description": "分布式开发,重写swoft框架之 -- Console 模块",
     "keywords": ["swoft","Console"],
     "license": "MIT",
