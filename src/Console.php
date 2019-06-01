@@ -11,6 +11,6 @@ class Console
 {
     public function test()
     {
-        
+        echo "run Console";
     }
 }
