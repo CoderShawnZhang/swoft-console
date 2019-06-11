@@ -8,8 +8,6 @@
 
 namespace SwoftRewrite\Console;
 
-
-use SwoftRewrite\Bean\DemoT;
 use SwoftRewrite\Framework\SwoftComponent;
 
 class AutoLoader extends SwoftComponent
@@ -29,8 +27,8 @@ class AutoLoader extends SwoftComponent
     public function beans()
     {
         return [
-            'DemoT' => [
-                'class' => DemoT::class,
+            'cliApp' => [
+                'class' => Application::class,
                 'version' => '1.0.0'
             ]
         ];
