@@ -1,15 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: zhanghongbo
- * Date: 2019/6/8
- * Time: 下午3:05
+ * 注解处理器
  */
 namespace SwoftRewrite\Console\Annotation\Parser;
 
 use SwoftRewrite\Annotation\Annotation\Parser\Parser;
 use SwoftRewrite\Annotation\Annotation\Mapping\AnnotationParser;
+use SwoftRewrite\Bean\Annotation\Mapping\Bean;
 use SwoftRewrite\Console\Annotation\Mapping\Command;
+use SwoftRewrite\Console\CommandRegister;
+use SwoftRewrite\Stdlib\Helper\Str;
 
 /**
  * Class CommandParser
@@ -20,9 +20,30 @@ use SwoftRewrite\Console\Annotation\Mapping\Command;
  */
 class CommandParser extends Parser
 {
-    public function parse(int $type, $annotationObject)
+    /**
+     * @param int $type
+     * @param Command $annotation Annotation object
+     * @return array
+     * @throws \Exception
+     */
+    public function parse(int $type, $annotation)
     {
+        if($type !== self::TYPE_CLASS){
+            throw new \Exception('`@Command` must be defined on class!');
+        }
 
-       return [1,2,3];
+        $class = $this->className; //SwoftRewrite\Http\Server\Command\HttpServerCommand
+        $group = $annotation->getName() ?: Str::getClassName($class,'Command'); //‌http
+        CommandRegister::addGroup($class,$group,[
+            'group' => $group,
+            'desc' => $annotation->getDesc(),
+            'alias' => $annotation->getAlias(),
+            'aliases' => $annotation->getAliases(),
+            'enabled' => $annotation->isEnabled(),
+            'coroutine'=>$annotation->isCoroutine(),
+            'idAliases' => $annotation->getIdAliases(),
+            'defaultCommand' => $annotation->getDefaultCommand()
+        ]);
+        return [$class,$class,Bean::SINGLETON,''];
     }
 }

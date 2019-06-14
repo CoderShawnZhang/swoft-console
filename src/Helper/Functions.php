@@ -6,10 +6,12 @@
  * Time: 下午5:11
  */
 
-namespace SwoftRewrite\Console\Helper;
+use SwoftRewrite\Framework\Swoft;
+use SwoftRewrite\Console\Input\Input;
 
-
-class Functions
-{
-
+if(!function_exists('input')){
+    function input()
+    {
+        return Swoft::getSingleton(Input::class);
+    }
 }
